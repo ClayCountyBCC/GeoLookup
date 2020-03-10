@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-eslint": "10.0.1",
-    "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "babel-eslint": "10.0.3",
     "merge": "^1.2.1",
     "oidc-client": "^1.10.1",
     "react": "^16.13.0",
@@ -19,12 +17,6 @@
   "devDependencies": {
     "ajv": "^6.12.0",
     "cross-env": "^5.2.1",
-    "eslint": "^5.12.0",
-    "eslint-config-react-app": "^4.0.1",
-    "eslint-plugin-flowtype": "^2.0.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
     "typescript": "^3.8.3"
   },
   "eslintConfig": {
@@ -36,5 +28,17 @@
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

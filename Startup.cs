@@ -22,6 +22,7 @@ namespace GeoLookup
     {
 
       services.AddControllersWithViews();
+      services.Configure<Models.ConnectionConfig>(Configuration.GetSection("ConnectionStrings"));
 
       // In production, the React files will be served from this directory
       services.AddSpaStaticFiles(configuration =>
@@ -48,10 +49,11 @@ namespace GeoLookup
       app.UseStaticFiles();
       app.UseSpaStaticFiles();
 
-      app.UseRouting();
+      app.UseRouting();      
 
       app.UseEndpoints(endpoints =>
       {
+        endpoints.MapControllers();
         endpoints.MapControllerRoute(
                   name: "default",
                   pattern: "{controller}/{action=Index}/{id?}");

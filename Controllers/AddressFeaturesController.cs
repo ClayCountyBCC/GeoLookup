@@ -4,44 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using GeoLookup.Models;
+using Microsoft.Extensions.Options;
 
 namespace GeoLookup.Controllers
 {
-    [Route("api/GeoLookup")]
-    [ApiController]
-    public class AddressFeaturesController : ControllerBase
+  [Route("api/GeoLookup")]
+  [ApiController]
+  public class AddressFeaturesController : ControllerBase
+  {
+    private ConnectionConfig _config;
+
+    public AddressFeaturesController(IOptions<ConnectionConfig> connectionConfig)
     {
-        // GET: api/AddressFeatures
-
-        [HttpGet]
-        public IEnumerable<string> GetPointFeatures(decimal latitude, decimal longitude)
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/AddressFeatures/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/AddressFeatures
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/AddressFeatures/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+      _config = connectionConfig.Value;      
     }
+
+    [HttpGet("GetPointFeatures")]    
+    public ActionResult<List<AddressFeature>> GetPointFeatures(decimal latitude, decimal longitude)
+    {
+      return AddressFeature.GetFeatures(new Point(latitude, longitude), _config.GIS);
+    }
+
+  }
 }
