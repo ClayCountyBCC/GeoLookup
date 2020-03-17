@@ -21,9 +21,15 @@ namespace GeoLookup.Controllers
     }
 
     [HttpGet("GetPointFeatures")]    
-    public ActionResult<List<AddressFeature>> GetPointFeatures(decimal latitude, decimal longitude)
+    public ActionResult<List<PointFeature>> GetPointFeatures(decimal latitude, decimal longitude)
     {
-      return AddressFeature.GetFeatures(new Point(latitude, longitude), _config.GIS);
+      return PointFeature.GetFeaturesByPoint(new Point(latitude, longitude), _config.GIS);
+    }
+
+    [HttpGet("GetAddressFeatures")]
+    public ActionResult<List<PointFeature>> GetAddressFeatures(int house, string street)
+    {
+      return PointFeature.GetFeaturesByAddress(house, street, _config.GIS);
     }
 
   }

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace GeoLookup
 {
@@ -47,6 +49,11 @@ namespace GeoLookup
 
       app.UseHttpsRedirection();
       app.UseStaticFiles();
+      app.UseStaticFiles(new StaticFileOptions
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "content")),
+        RequestPath = "/content"
+      });
       app.UseSpaStaticFiles();
 
       app.UseRouting();      

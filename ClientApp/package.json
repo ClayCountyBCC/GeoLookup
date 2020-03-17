@@ -2,6 +2,7 @@
   "name": "geolookup",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://public.claycountygov.com/GeoLookup/",
   "dependencies": {
     "babel-eslint": "10.0.3",
     "merge": "^1.2.1",

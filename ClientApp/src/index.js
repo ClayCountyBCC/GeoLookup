@@ -8,7 +8,7 @@ import App from './App';
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(  
+ReactDOM.render(    
     <App />,
   rootElement);
 
