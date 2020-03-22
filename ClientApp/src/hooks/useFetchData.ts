@@ -1,10 +1,10 @@
 ﻿import React, { useState, useEffect } from 'react';
 
-export const useFetchData = (url, setData, initial_load: boolean) =>
+export const useFetchData = (url: string, setData: Function, initial_load: boolean) =>
 {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
+   
   const fetchData = async () =>
   {
     setIsError(false);

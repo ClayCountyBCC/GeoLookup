@@ -25,6 +25,8 @@ namespace GeoLookup
 
       services.AddControllersWithViews();
       services.Configure<Models.ConnectionConfig>(Configuration.GetSection("ConnectionStrings"));
+      services.AddControllers()
+                  .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
       // In production, the React files will be served from this directory
       services.AddSpaStaticFiles(configuration =>

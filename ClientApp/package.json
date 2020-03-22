@@ -2,8 +2,10 @@
   "name": "geolookup",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://public.claycountygov.com/GeoLookup/",
+  "homepage": ".",
   "dependencies": {
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
     "babel-eslint": "10.0.3",
     "merge": "^1.2.1",
     "oidc-client": "^1.10.1",

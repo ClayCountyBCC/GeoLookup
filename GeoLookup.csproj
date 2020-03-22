@@ -31,15 +31,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\AddressDetail.tsx" />
+    <None Remove="ClientApp\src\AddressSelectRow.tsx" />
+    <None Remove="ClientApp\src\hooks\useFetchData.js" />
+    <None Remove="ClientApp\src\hooks\useFetchData.js.map" />
     <None Remove="ClientApp\src\hooks\useFetchData.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="content\" />
+    <TypeScriptCompile Remove="ClientApp\src\hooks\useFetchData.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\hooks\useFetchData.ts" />
+    <Folder Include="ClientApp\src\hooks\" />
+    <Folder Include="content\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

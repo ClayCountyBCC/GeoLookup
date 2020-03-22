@@ -10,6 +10,7 @@ namespace GeoLookup.Models
 {
   public class PointFeature
   {
+    public long OBJECTID { get; set; } = 0;
     public string WholeAddress { get; set; } = "";
     public string City { get; set; } = "";
     public string Zip { get; set; } = "";
@@ -29,6 +30,7 @@ namespace GeoLookup.Models
     public string Voting_Precinct { get; set; } = "";
     public string US_House_Representative_Name { get; set; } = "";
     public string US_House_District { get; set; } = "";
+    public string Waste_Collection_Governed_By { get; set; } = "";
     public string Waste_Collection_Garbage_Pickup_Day { get; set; } = "";
     public string Waste_Collection_Yard_Waste_Pickup_Day { get; set; } = "";
     public string Waste_Collection_Recycling_Pickup_Day { get; set; } = "";
@@ -42,7 +44,7 @@ namespace GeoLookup.Models
     public string Elementary_School_Website { get; set; } = "";
 
     public string Sixth_Grade_School_Name { get; set; } = "";
-    public string Sixth_Grace_School_Website { get; set; } = "";
+    public string Sixth_Grade_School_Website { get; set; } = "";
 
     public string Junior_High_School_Name { get; set; } = "";
     public string Junior_High_School_Website { get; set; } = "";
@@ -80,7 +82,7 @@ namespace GeoLookup.Models
 
         SELECT  
           CD.District Commissioner_District
-          ,CD.CommissionerName Commisioner_Name
+          ,CD.CommissionerName Commissioner_Name
           ,ESZ.NAME Electric_Service_Zone
           ,ISNULL(EVZ.EvacZoneCode, 'None') Evacuation_Zone_Code
           ,ISNULL(EVZ.EvacZone, 'None') Evacuation_Zone
@@ -91,6 +93,7 @@ namespace GeoLookup.Models
           ,PB.PRECINCT Voting_Precinct
           ,C.NAME US_House_Representative_Name
           ,C.District US_House_District
+          ,WC.NAME Waste_Collection_Governed_By
           ,WC.Garbage Waste_Collection_Garbage_Pickup_Day
           ,WC.Yard Waste_Collection_Yard_Waste_Pickup_Day
           ,WC.Recycle Waste_Collection_Recycling_Pickup_Day
@@ -194,7 +197,8 @@ namespace GeoLookup.Models
         WITH Addresses AS (
 
         SELECT
-              UPPER(WholeAddress) AS WholeAddress
+              OBJECTID
+              ,UPPER(WholeAddress) AS WholeAddress
               ,Community AS City
               ,Zip
               ,XCoord
@@ -208,14 +212,15 @@ namespace GeoLookup.Models
             AND House = @house
         )
 
-        SELECT  
-          A.XCoord
+        SELECT 
+          A.OBJECTID
+          ,A.XCoord
           ,A.YCoord
           ,A.WholeAddress
           ,A.City
           ,A.Zip
           ,CD.District Commissioner_District
-          ,CD.CommissionerName Commisioner_Name
+          ,CD.CommissionerName Commissioner_Name
           ,ESZ.NAME Electric_Service_Zone
           ,ISNULL(EVZ.EvacZoneCode, 'None') Evacuation_Zone_Code
           ,ISNULL(EVZ.EvacZone, 'None') Evacuation_Zone
@@ -226,6 +231,7 @@ namespace GeoLookup.Models
           ,PB.PRECINCT Voting_Precinct
           ,C.NAME US_House_Representative_Name
           ,C.District US_House_District
+          ,WC.NAME Waste_Collection_Governed_By
           ,WC.Garbage Waste_Collection_Garbage_Pickup_Day
           ,WC.Yard Waste_Collection_Yard_Waste_Pickup_Day
           ,WC.Recycle Waste_Collection_Recycling_Pickup_Day
