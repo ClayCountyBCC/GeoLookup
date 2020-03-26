@@ -16,31 +16,83 @@ namespace GeoLookup.Models
 
     public ParkFeature() { }
 
-    public static List<string> GetFeatures(string cs)
+    public static List<string> GetFeatures()
     {
-      string query = @"
-        SELECT DISTINCT FacilityType
-        FROM PARK_INFRASTRUCTURE_LINE
-        UNION
-        SELECT DISTINCT FacilityType
-        FROM PARK_INFRASTRUCTURE_POLY
-        UNION
-        SELECT DISTINCT FacilityType
-        FROM PARK_INFRASTRUCTURE_PT";
+      //string query = @"
+      //  SELECT DISTINCT FacilityType
+      //  FROM PARK_INFRASTRUCTURE_LINE
+      //  UNION
+      //  SELECT DISTINCT FacilityType
+      //  FROM PARK_INFRASTRUCTURE_POLY
+      //  UNION
+      //  SELECT DISTINCT FacilityType
+      //  FROM PARK_INFRASTRUCTURE_PT";
 
-      try
-      {
-        using (IDbConnection db = new SqlConnection(cs))
-        {
-          return (List<string>)db.Query<string>(query);
-        }
+      //try
+      //{
+      //  using (IDbConnection db = new SqlConnection(cs))
+      //  {
+      //    return (List<string>)db.Query<string>(query);
+      //  }
 
-      }
-      catch (Exception ex)
+      //}
+      //catch (Exception ex)
+      //{
+      //  new ErrorLog(ex);
+      //  return null;
+      //}
+      var features = new List<string>
       {
-        new ErrorLog(ex);
-        return null;
-      }
+        "ADA Baseball Field",
+        "Baseball Cage",
+        "Baseball Field",
+        "Basketball Court",
+        "Batting Cage",
+        "Big Cabin",
+        "Block & Fame Dining Hall",
+        "Block Cabin",
+        "Boat Ramp",
+        "Boat Slip",
+        "Bunk House",
+        "Cabin",
+        "Campfire Circle",
+        "Camping Full-Facility",
+        "Canoe Launch",
+        "Ceder Burrell Lodge",
+        "Concession Stand",
+        "Cook's Cabin",
+        "Cypress Mian Dining Hall & Kitchen",
+        "Dining Hall",
+        "Fishing",
+        "Fishing Pier",
+        "Frisbee Golf",
+        "Hiking",
+        "Horse Riding Area",
+        "Museum",
+        "Muskogee Cabin",
+        "Observation Site",
+        "Pavilion",
+        "Pavilion Bldg",
+        "Picnic Table",
+        "Pier",
+        "Playground",
+        "Pool",
+        "R.V. Parking Area",
+        "Sand Volleyball Court Area",
+        "Soccer Field",
+        "Soft Toss Station",
+        "Swimming",
+        "Tennis Court",
+        "Tent Campsite",
+        "Volleyball Court",
+        "Vollyball Court",
+        "Wood Bench",
+        "Wood Deck",
+        "Wood Deck Amphitheater",
+        "Wood Ramp",
+        "Wooded Boardwalk"
+      };
+      return features;
     }
 
 
