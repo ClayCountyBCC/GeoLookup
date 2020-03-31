@@ -36,15 +36,35 @@
     <None Remove="ClientApp\src\hooks\useFetchData.js" />
     <None Remove="ClientApp\src\hooks\useFetchData.js.map" />
     <None Remove="ClientApp\src\hooks\useFetchData.ts" />
+    <None Remove="content\bulma.min.css" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\hooks\useFetchData.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="content\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="content\bulma.css.map" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\src\hooks\" />
-    <Folder Include="content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="content\bulma.css">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="content\bulma.css.map">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <Content Update="content\bulma.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
