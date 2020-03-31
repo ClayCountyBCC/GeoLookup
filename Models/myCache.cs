@@ -69,7 +69,7 @@ namespace GeoLookup.Models
         case "gis_cs":
           return "";
         case "park_features":
-          return ParkFeature.GetFeatures(cs);
+          return ParkFeature.GetFeatures();
         default:
           return null;
       }

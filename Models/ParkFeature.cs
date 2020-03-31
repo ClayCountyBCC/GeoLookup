@@ -18,29 +18,6 @@ namespace GeoLookup.Models
 
     public static List<string> GetFeatures()
     {
-      //string query = @"
-      //  SELECT DISTINCT FacilityType
-      //  FROM PARK_INFRASTRUCTURE_LINE
-      //  UNION
-      //  SELECT DISTINCT FacilityType
-      //  FROM PARK_INFRASTRUCTURE_POLY
-      //  UNION
-      //  SELECT DISTINCT FacilityType
-      //  FROM PARK_INFRASTRUCTURE_PT";
-
-      //try
-      //{
-      //  using (IDbConnection db = new SqlConnection(cs))
-      //  {
-      //    return (List<string>)db.Query<string>(query);
-      //  }
-
-      //}
-      //catch (Exception ex)
-      //{
-      //  new ErrorLog(ex);
-      //  return null;
-      //}
       var features = new List<string>
       {
         "ADA Baseball Field",
@@ -126,7 +103,7 @@ namespace GeoLookup.Models
         SELECT DISTINCT
           M.Matching_Feature
           ,M.Park_Name
-          ,'' Park_Address -- PL.Address field or fields
+          ,ISNULL(PL.Address, '') Park_Address -- PL.Address field or fields
         FROM Matches M
         INNER JOIN PARK_LOCATION PL ON M.Park_Name = PL.NAME
         ORDER BY Park_Name, Matching_Feature";
