@@ -32,5 +32,18 @@ namespace GeoLookup.Controllers
       return ParkFeature.SearchParks(feature, _config.GIS);
     }
 
+    [HttpGet("GetAllParksAndFeatures")]
+    public List<ParkFeature> GetAllParksAndFeatures()
+    {
+      return (List<ParkFeature>)myCache.GetItem("all_parks_and_features", _config.GIS);
+    }
+
+    [HttpGet("GetAllParks")]
+    public List<ParkFeature> GetAllParks()
+    {
+      return (List<ParkFeature>)myCache.GetItem("all_parks", _config.GIS);
+    }
+
+
   }
 }

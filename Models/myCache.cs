@@ -70,6 +70,10 @@ namespace GeoLookup.Models
           return "";
         case "park_features":
           return ParkFeature.GetFeatures();
+        case "all_parks_and_features":
+          return ParkFeature.GetAllParksAndFeatures(cs);
+        case "all_parks":
+          return ParkFeature.GetAllParks(cs);
         default:
           return null;
       }
