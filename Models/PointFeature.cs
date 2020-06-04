@@ -27,7 +27,11 @@ namespace GeoLookup.Models
     public string Florida_House_District { get; set; } = "";
     public string Florida_Senator_Name { get; set; } = "";
     public string Florida_Senate_District { get; set; } = "";
+
     public string Voting_Precinct { get; set; } = "";
+    public string Voting_Precinct_Name { get; set; } = "";
+    public string Voting_Precinct_Address { get; set; } = "";
+
     public string US_House_Representative_Name { get; set; } = "";
     public string US_House_District { get; set; } = "";
     public string Waste_Collection_Governed_By { get; set; } = "";
@@ -91,6 +95,8 @@ namespace GeoLookup.Models
           ,FS.NAME Florida_Senator_Name
           ,FS.District Florida_Senate_District
           ,PB.PRECINCT Voting_Precinct
+          ,PL.NAME Voting_Precinct_Name
+          ,LTRIM(RTRIM(PL.NUMBER)) + ' ' +   LTRIM(RTRIM(PL.NAME0)) + ' ' + LTRIM(RTRIM(PL.CITY_NAME)) + ', ' + LTRIM(RTRIM(PL.ZIP5)) Voting_Precinct_Address
           ,C.NAME US_House_Representative_Name
           ,C.District US_House_District
           ,WC.NAME Waste_Collection_Governed_By
@@ -124,6 +130,7 @@ namespace GeoLookup.Models
         LEFT OUTER JOIN Clay.dbo.FLORIDA_HOUSE FH ON FH.Shape.STIntersects(P.Point) = 1
         LEFT OUTER JOIN Clay.dbo.FLORIDA_SENATE FS ON FS.Shape.STIntersects(P.Point) = 1
         LEFT OUTER JOIN Clay.dbo.PRECINCT_BOUNDARY PB ON PB.Shape.STIntersects(P.Point) = 1
+        LEFT OUTER JOIN Clay.dbo.PRECINCT_LOCATION PL ON PL.ID = PB.PRECINCT
         LEFT OUTER JOIN Clay.dbo.US_CONGRESS C ON C.Shape.STIntersects(P.Point) = 1
         LEFT OUTER JOIN Clay.dbo.WASTE_COLLECTION WC ON WC.Shape.STIntersects(P.Point) = 1
         LEFT OUTER JOIN Clay.dbo.WATER_SEWER_SERVICE_ZONES WSSZ ON WSSZ.Shape.STIntersects(P.Point) = 1
@@ -229,6 +236,8 @@ namespace GeoLookup.Models
           ,FS.NAME Florida_Senator_Name
           ,FS.District Florida_Senate_District
           ,PB.PRECINCT Voting_Precinct
+          ,PL.NAME Voting_Precinct_Name
+          ,LTRIM(RTRIM(PL.NUMBER)) + ' ' +   LTRIM(RTRIM(PL.NAME0)) + ' ' + LTRIM(RTRIM(PL.CITY_NAME)) + ', ' + LTRIM(RTRIM(PL.ZIP5)) Voting_Precinct_Address
           ,C.NAME US_House_Representative_Name
           ,C.District US_House_District
           ,WC.NAME Waste_Collection_Governed_By
@@ -262,6 +271,7 @@ namespace GeoLookup.Models
         LEFT OUTER JOIN Clay.dbo.FLORIDA_HOUSE FH ON FH.Shape.STIntersects(A.Shape) = 1
         LEFT OUTER JOIN Clay.dbo.FLORIDA_SENATE FS ON FS.Shape.STIntersects(A.Shape) = 1
         LEFT OUTER JOIN Clay.dbo.PRECINCT_BOUNDARY PB ON PB.Shape.STIntersects(A.Shape) = 1
+        LEFT OUTER JOIN Clay.dbo.PRECINCT_LOCATION PL ON PL.ID = PB.PRECINCT
         LEFT OUTER JOIN Clay.dbo.US_CONGRESS C ON C.Shape.STIntersects(A.Shape) = 1
         LEFT OUTER JOIN Clay.dbo.WASTE_COLLECTION WC ON WC.Shape.STIntersects(A.Shape) = 1
         LEFT OUTER JOIN Clay.dbo.WATER_SEWER_SERVICE_ZONES WSSZ ON WSSZ.Shape.STIntersects(A.Shape) = 1

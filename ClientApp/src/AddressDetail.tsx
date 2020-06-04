@@ -39,7 +39,9 @@ const AddressDetail = (props) =>
       id: 4,
       title: "Voting Precinct",
       detail: [
-        { label: "Precinct", field: 'Voting_Precinct' },
+        { label: "Voting Precinct", field: 'Voting_Precinct' },
+        { label: "Voting Precinct Location", field: 'Voting_Precinct_Name' },
+        { label: "Voting Precinct Address", field: 'Voting_Precinct_Address' },
       ]
     },
     {
